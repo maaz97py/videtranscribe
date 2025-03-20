@@ -1,6 +1,6 @@
 import streamlit as st
 from youtube_transcript_api import YouTubeTranscriptApi
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 
 def get_video_id(url):
     """Extract YouTube video ID from the given URL."""
@@ -24,8 +24,7 @@ def fetch_transcript(video_id, language='en'):
 
 def translate_text(text, target_language):
     """Translate text to the target language."""
-    translator = Translator()
-    return translator.translate(text, dest=target_language).text
+    return GoogleTranslator(source='auto', target=target_language).translate(text)
 
 def main():
     st.set_page_config(page_title="YouTube Video to Text", page_icon="🔤", layout="wide")
